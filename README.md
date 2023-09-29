@@ -20,6 +20,8 @@ git clone --recursive https://github.com/Hussain5001/OOPproject-2023.git
 ## Building
 
 ```bash
+// Builds config files for CMake
 cmake -B build
+// Builds Project
 cmake --build build
 ```
