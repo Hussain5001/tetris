@@ -11,8 +11,8 @@ In Tetris, the purpose is to bring down these blocks from the top of the screen 
 
 ## Project Task List and Timeline
 
-- [ ] Create an interactive window where the game will run
 - [ ] Design and Complete the Class Diagram
+- [ ] Create an interactive window where the game will run
 - [ ] Implement Game Class, and build the game board
 - [ ] Build the Tetrimonoes and movement logic
 - [ ] Integrate them in the game board
@@ -22,6 +22,7 @@ In Tetris, the purpose is to bring down these blocks from the top of the screen 
 - [ ] Write Unit Tests for the classes and functions defined
 - [ ] Debug and clean the code
 - [ ] Set up User Documentation
+![Timeline](./Downloads/../Gantt_Chart.png)
 
 ## User Interaction Description
 
