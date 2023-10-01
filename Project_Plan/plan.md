@@ -11,6 +11,7 @@ In Tetris, the purpose is to bring down these blocks from the top of the screen 
 
 ## Project Task List and Timeline
 
+- [ ] Create an interactive window where the game will run
 - [ ] Design and Complete the Class Diagram
 - [ ] Implement Game Class, and build the game board
 - [ ] Build the Tetrimonoes and movement logic
@@ -36,8 +37,12 @@ As the user progresses, the earned points will be readily visible, allowing them
 
 Having a testing and debugging plan is essential to ensure the reliability and correctness of the codebase. Therefore, the code will be broken down into **smaller testable parts** i.e the Tetrominoes, game board etc. and unit tests will be performed to cover various scenarios and edge cases. 
 
-Since we'll be using CMake to build the project, we've chosen to use *ctest* as a part of CMake to streamline the testing process. 
+Since we'll be using CMake to build the project, we've chosen to use ***ctest*** as a part of CMake to streamline the testing process. 
 
 A log of test results will be maintained to monitor the progress and identify any test failures or errors. 
 
-In terms of debugging, we'll be using CLion by Jetbrains to assist in the debugging proceds.
+In terms of debugging, we'll be using CLion by Jetbrains to assist in the debugging process.
+
+Well documented **README** file is also included in our project that acts as a user guide on how to play the game and also provides instructions on how to compile and start the game. It will also outline any issue if detected. 
+
+On the technical side, CMake is used for the project's build process, simplifying compiler settings, dependency management, and target definitions. **CMakeLists.txt** files in dedicated directories maintain project modularity, aiding in organization and scalability. 
