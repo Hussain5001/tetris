@@ -22,7 +22,7 @@ In Tetris, the purpose is to bring down these blocks from the top of the screen 
 - [ ] Write Unit Tests for the classes and functions defined
 - [ ] Debug and clean the code
 - [ ] Set up User Documentation
-![Timeline](./Downloads/../Gantt_Chart.png)
+![Gann](Gantt_Chart.png)
 
 ## User Interaction Description
 
