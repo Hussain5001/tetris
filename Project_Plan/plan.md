@@ -1,15 +1,15 @@
 # Project Title : Tetris (Group 44) (Project Plan)
 
-## Use Case Description
+## **Use Case Description**
 
 Tetris is a captivating puzzle video game that immerses players in a world of strategic thinking and rapid decision-making. This project is designed for gamers of all ages and skill levels. The core gameplay revolves around the manipulation of Tetrominoes, geometric shapes consisting of four blocks each. The central goal of the game is for players to skilfully arrange and rotate these descending, Tetrominoes preventing them from stacking up to the top of the screen for as long as possible. 
 
 In Tetris, the purpose is to bring down these blocks from the top of the screen and strategically position them to create complete horizontal lines within a 20x10 rectangular matrix. This achievement entails players earning points for breaking each line. Advancing levels increases the points granted for each completed line. The more horizontal lines you clear, the longer your playing session and the higher your score. Additionally, as the game progresses, the pace of falling Tetrominoes quickens, demanding faster reflexes and sharpened wit. 
 
 
-## Class Diagram
+## **Class Diagram**
 
-## Project Task List and Timeline
+## **Project Task List and Timeline**
 
 - [ ] Design and Complete the Class Diagram
 - [ ] Create an interactive window where the game will run
@@ -24,7 +24,7 @@ In Tetris, the purpose is to bring down these blocks from the top of the screen 
 - [ ] Set up User Documentation
 ![Gann](Gantt_Chart.png)
 
-## User Interaction Description
+## **User Interaction Description**
 
 To begin with your Tetris Adventure, user will initiate the game by pressing the enter key. The game begins with a blank 20X10 rectangular Matrix at the top of the screen. 
 
@@ -34,7 +34,7 @@ During unintended moves, for example, moving the falling tetromino outside the b
 
 As the user progresses, the earned points will be readily visible, allowing them to track their performance over time. If the user decides to conclude with a Tetris session, the Esc key provides a swift exit from the game.
 
-## Unit Testing and Debugging Plan
+## **Unit Testing and Debugging Plan**
 
 Having a testing and debugging plan is essential to ensure the reliability and correctness of the codebase. Therefore, the code will be broken down into **smaller testable parts** i.e the Tetrominoes, game board etc. and unit tests will be performed to cover various scenarios and edge cases. 
 
