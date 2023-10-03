@@ -8,7 +8,7 @@ In Tetris, the purpose is to bring down these blocks from the top of the screen 
 
 
 ## **Class Diagram**
-
+![Class Diagram](ClassDiagram.png)
 ## **Project Task List and Timeline**
 
 - [ ] Design and Complete the Class Diagram
@@ -22,7 +22,7 @@ In Tetris, the purpose is to bring down these blocks from the top of the screen 
 - [ ] Write Unit Tests for the classes and functions defined
 - [ ] Debug and clean the code
 - [ ] Set up User Documentation
-![Gann](Gantt_Chart.png)
+![Gannt](Gantt_Chart.png)
 
 ## **User Interaction Description**
 
