@@ -30,3 +30,22 @@ void Board::clearGrid() {
     }
   }
 }
+
+bool Board::isRowFull(int row) {
+    for (int j = 0; j < num_cols_; ++j) {
+        if (grid_[row][j] == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
+int Board::getCellValue(int row, int col) {
+    return grid_[row][col];
+}
+
+bool Board::isCellEmpty(int row, int col) {
+    return grid_[row][col] == 0;
+}
