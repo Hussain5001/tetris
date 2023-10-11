@@ -20,11 +20,12 @@ class Tetromino{
     int id;
     Tetromino();
     std::map<int, std::vector<Position>> cells;
+    std::vector<Position> get_current_position();
     void draw();
     void move(int row, int col);
     void rotate();
     void undo_rotation();
-    virtual std::vector<Position> set_initial_position();
+    virtual void set_initial_position();
 };
 
 

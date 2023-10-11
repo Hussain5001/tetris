@@ -11,16 +11,26 @@ Tetromino::Tetromino(){
     this ->col_pos=0;
 };
 
+std::vector<Position> Tetromino::get_current_position() {
+    std::vector<Position> block_structure = cells[current_rotation];
+    std::vector<Position> block_with_offset;
+    for(Position cell: block_structure){
+        Position moved{cell.row + row_pos, cell.column + col_pos};
+        block_with_offset.push_back(moved);
+    }
+
+    return block_with_offset;
+}
+
 void Tetromino::draw() {
-//Storing the initial rotation state of a tetromino in a vector
-    std::vector<Position> tiles = set_initial_position();
+  // getting the position of block in grid
+  std::vector<Position> cell_positions = get_current_position();
 
-    for (Position current_block: tiles) {
-
-        DrawRectangle(current_block.column * cell_size + 1, current_block.row * cell_size + 1, cell_size - 1,
-                      cell_size - 1,colors[id]);
-
-    };
+  for (Position cell : cell_positions) {
+    DrawRectangle(cell.column * cell_size + 1,
+                  cell.row * cell_size + 1, cell_size - 1,
+                  cell_size - 1, colors[id]);
+  };
 };
 
 void Tetromino::move(int row, int col){
@@ -31,17 +41,9 @@ void Tetromino::move(int row, int col){
 };
 
 //Virtual Function for defining the initial position of a Tetromino block
-std::vector<Position> Tetromino::set_initial_position(){
-
-    std::vector<Position>tiles= cells[current_rotation];
-    std::vector<Position> moved_tiles;
-    for (Position item:tiles){
-        Position new_pos= Position(item.row + 0, item.column + 3);
-        moved_tiles.push_back(new_pos);
-    }
-
-    return moved_tiles;
-};
+void Tetromino::set_initial_position(){
+    move(0,3);
+}
 
 //Function for rotating a Tetromino block
 void Tetromino::rotate(){
@@ -62,8 +64,3 @@ void Tetromino::undo_rotation(){
     }
 
 };
-
-
-
-
-

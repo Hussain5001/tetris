@@ -1,51 +1,81 @@
 #include "board.h"
 #include <iostream>
+#include "raylib.h"
 
-Board::Board(int num_rows, int num_cols, int cell_size)
-    : num_rows_(num_rows), num_cols_(num_cols), cell_size_(cell_size) {
-  initialize_grid();
+Board::Board(){
+
+  //set values
+  num_rows=20;
+  num_cols=10;
+  cell_size=30;
+  colors=cell_colours();
+
+  //allocate space for grid
+  create_grid();
+
+  //initialize grid with zeros
+  clear_grid();
+
 }
 
 Board::~Board() {
-  for (int i = 0; i < num_rows_; ++i) {
-    delete[] grid_[i];
+  for (int i = 0; i < num_rows; ++i) {
+    delete[] grid[i];
   }
-  delete[] grid_;
+  delete[] grid;
 }
 
-void Board::initialize_grid() {
-  grid_ = new int*[num_rows_];
-  for (int i = 0; i < num_rows_; i++) {
-    grid_[i] = new int[num_cols_];
-    for (int j = 0; j < num_cols_; j++) {
-      grid_[i][j] = 0;
-    }
+void Board::create_grid() {
+  grid = new int*[num_rows];
+  for (int i = 0; i < num_rows; i++) {
+    grid[i] = new int[num_cols];
   }
 }
 
 void Board::clear_grid() {
-  for (int i = 0; i < num_rows_; i++) {
-    for (int j = 0; j < num_cols_; j++) {
-      grid_[i][j] = 0;
+  for (int i = 0; i < num_rows; i++) {
+    for (int j = 0; j < num_cols; j++) {
+      grid[i][j] = 0;
     }
   }
 }
 
+void Board::show_state() {
+  for(int r=0;r<num_rows;r++){
+    for(int c=0;c<num_cols;c++){
+      std::cout<<grid[r][c];
+    }
+    std::cout<<std::endl;
+  }
+}
+
 bool Board::is_row_full(int row) {
-    for (int j = 0; j < num_cols_; ++j) {
-        if (grid_[row][j] == 0) {
+    for (int j = 0; j < num_cols; ++j) {
+        if (grid[row][j] == 0) {
             return false;
         }
     }
     return true;
 }
+bool Board::is_cell_within_bounds(int row, int col){
+  if(row>=0 && col>=0 && row<num_rows && col<num_cols){
+    return false;
+  }
+  return true;
+}
 
-
+void Board::draw(){
+  for(int r=0;r<num_rows;r++){
+    for(int c=0;c<num_cols;c++){
+      DrawRectangle(c*cell_size+10,r*cell_size+10,cell_size-1,cell_size-1,colors[grid[r][c]]);
+    }
+  }
+}
 
 int Board::get_cell_value(int row, int col) {
-    return grid_[row][col];
+    return grid[row][col];
 }
 
 bool Board::is_cell_empty(int row, int col) {
-    return grid_[row][col] == 0;
+    return grid[row][col] == 0;
 }
