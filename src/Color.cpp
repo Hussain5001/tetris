@@ -1,6 +1,6 @@
 #include "Color.h"
 #include <vector>
-using namespace std;
+
 
 const Color YELLOW = { 253, 249, 0, 255 };
 const Color ORANGE = { 255, 161, 0, 255 };
@@ -11,7 +11,7 @@ const Color BROWN = { 127, 106, 79, 255 };
 const Color WHITE = { 255, 255, 255, 255 };
 const Color RED = { 230, 41, 55, 255 };
 
-vector<Color> Cell_Colors(){
+std::vector<Color> cell_colours(){
     return (YELLOW,ORANGE,GREEN,PURPLE,SKYBLUE,BROWN,WHITE,RED);
 }
 

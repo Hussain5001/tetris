@@ -1,9 +1,9 @@
 #pragma once
 #include "Tetromino.h"
 
-class Block_T: public Tetromino{
+class BlockT: public Tetromino{
 
 public:
-    Block_T();
+    BlockT();
     int id;
 };

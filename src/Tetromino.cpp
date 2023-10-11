@@ -6,13 +6,13 @@
 Tetromino::Tetromino(){
     this->cell_size=30;
     this->current_rotation=0;
-    colors = Cell_Colours();
+    colors = cell_colours();
     this ->row_pos=0;
     this ->col_pos=0;
 };
 
 void Tetromino::draw() {
-//Storing the intital rotation state of a tetromino in a vector
+//Storing the initial rotation state of a tetromino in a vector
     std::vector<Position> tiles = set_initial_position();
 
     for (Position current_block: tiles) {
@@ -34,13 +34,13 @@ void Tetromino::move(int row, int col){
 std::vector<Position> Tetromino::set_initial_position(){
 
     std::vector<Position>tiles= cells[current_rotation];
-    std::vector<Position> movedTiles;
+    std::vector<Position> moved_tiles;
     for (Position item:tiles){
         Position new_pos= Position(item.row + 0, item.column + 3);
-        movedTiles.push_back(new_pos);
+        moved_tiles.push_back(new_pos);
     }
 
-    return movedTiles;
+    return moved_tiles;
 };
 
 //Function for rotating a Tetromino block

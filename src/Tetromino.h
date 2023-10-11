@@ -6,7 +6,6 @@
 #include <string>
 #include <vector>
 #include "Color.h"
-using namespace std;
 
 class Tetromino{
 
@@ -25,7 +24,7 @@ class Tetromino{
     void move(int row, int col);
     void rotate();
     void undo_rotation();
-    virtual vector<Position> set_initial_position();
+    virtual std::vector<Position> set_initial_position();
 };
 
 

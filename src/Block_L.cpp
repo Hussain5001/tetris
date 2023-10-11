@@ -1,8 +1,8 @@
 #include "Block_L.h"
 #include "Tetromino.h"
-using namespace std;
 
-Block_L::Block_L(){
+
+BlockL::BlockL(){
 
     this->id = 1;
     cells[0] = {Position(0, 2), Position(1, 0), Position(1, 1), Position(1, 2)};

@@ -1,7 +1,7 @@
 #pragma once
 #include <raylib.h>
 #include <vector>
-using namespace std;
+
 
 extern const Color YELLOW;
 extern const Color ORANGE;
@@ -12,7 +12,7 @@ extern const Color BROWN;
 extern const Color WHITE;
 extern const Color RED;
 
-vector<Color> Cell_Colours();
+std::vector<Color> cell_colours();
 
 
 

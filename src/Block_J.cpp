@@ -1,8 +1,8 @@
 #include "Block_J.h"
 #include "Tetromino.h"
-using namespace std;
 
-Block_J::Block_J(){
+
+BlockJ::BlockJ(){
 
     this->id = 2;
     cells[0] = {Position(0, 0), Position(1, 0), Position(1, 1), Position(1, 2)};

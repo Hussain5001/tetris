@@ -3,7 +3,7 @@
 
 Board::Board(int num_rows, int num_cols, int cell_size)
     : num_rows_(num_rows), num_cols_(num_cols), cell_size_(cell_size) {
-  initializeGrid();
+  initialize_grid();
 }
 
 Board::~Board() {
@@ -13,7 +13,7 @@ Board::~Board() {
   delete[] grid_;
 }
 
-void Board::initializeGrid() {
+void Board::initialize_grid() {
   grid_ = new int*[num_rows_];
   for (int i = 0; i < num_rows_; i++) {
     grid_[i] = new int[num_cols_];
@@ -23,7 +23,7 @@ void Board::initializeGrid() {
   }
 }
 
-void Board::clearGrid() {
+void Board::clear_grid() {
   for (int i = 0; i < num_rows_; i++) {
     for (int j = 0; j < num_cols_; j++) {
       grid_[i][j] = 0;
@@ -31,7 +31,7 @@ void Board::clearGrid() {
   }
 }
 
-bool Board::isRowFull(int row) {
+bool Board::is_row_full(int row) {
     for (int j = 0; j < num_cols_; ++j) {
         if (grid_[row][j] == 0) {
             return false;
@@ -42,10 +42,10 @@ bool Board::isRowFull(int row) {
 
 
 
-int Board::getCellValue(int row, int col) {
+int Board::get_cell_value(int row, int col) {
     return grid_[row][col];
 }
 
-bool Board::isCellEmpty(int row, int col) {
+bool Board::is_cell_empty(int row, int col) {
     return grid_[row][col] == 0;
 }

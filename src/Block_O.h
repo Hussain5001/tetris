@@ -1,10 +1,10 @@
 #pragma once
 #include "Tetromino.h"
 
-class Block_O: public Tetromino{
+class BlockO: public Tetromino{
 
 public:
-    Block_O();
+    BlockO();
     int id;
 };
 

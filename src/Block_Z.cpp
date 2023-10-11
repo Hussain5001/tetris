@@ -1,8 +1,8 @@
 #include "Block_Z.h"
 #include "Tetromino.h"
-using namespace std;
 
-Block_Z::Block_Z(){
+
+BlockZ::BlockZ(){
 
     this->id = 7;
     cells[0] = {Position(0, 0), Position(0, 1), Position(1, 1), Position(1, 2)};

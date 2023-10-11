@@ -8,14 +8,14 @@ public:
     ~Board();
 
     
-    void clearGrid();
-    void showState();
-    void fillCell(int row, int col, int value);
-    void clearCell(int row, int col);
-    bool isCellEmpty(int row, int col);
-    int getCellValue(int row, int col);
-    bool isRowFull(int row);
-    bool clearRows(int tol);
+    void clear_grid();
+    void show_state();
+    void fill_cell(int row, int col, int value);
+    void clear_cell(int row, int col);
+    bool is_cell_empty(int row, int col);
+    int get_cell_value(int row, int col);
+    bool is_row_full(int row);
+    bool clear_rows(int tol);
 
 private:
     
@@ -25,6 +25,6 @@ private:
     int** grid_;
 
   
-    void initializeGrid();
+    void initialize_grid();
 };
 
