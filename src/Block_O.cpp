@@ -9,7 +9,7 @@ BlockO::BlockO(){
 
 }
 //Changing the initial position of the O Block to move to the centre of the grid.
-void Tetromino::set_initial_position(){
+void BlockO::set_initial_position(){
     move(0,4);
 }
 

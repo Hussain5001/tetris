@@ -15,9 +15,7 @@
 //extern const Color pink=PINK;
 
 
-std::vector<Color> cell_colours(){
-    return {DARKGRAY,YELLOW,ORANGE,DARKGREEN,SKYBLUE,BROWN,WHITE,RED,PINK};
-}
+std::vector<Color> color_vector();
 
 
 

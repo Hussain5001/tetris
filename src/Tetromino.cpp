@@ -6,7 +6,7 @@
 Tetromino::Tetromino(){
     this->cell_size=30;
     this->current_rotation=0;
-    colors = cell_colours();
+    colors = color_vector();
     this ->row_pos=0;
     this ->col_pos=0;
 };

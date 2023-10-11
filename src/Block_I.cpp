@@ -11,6 +11,6 @@ BlockI::BlockI(){
     cells[3] = {Position{0, 1}, Position{1, 1}, Position{2, 1}, Position{3, 1}};
 }
 //Changing the initial position of the I block to make it start its movement from the centre of the grid
-void Tetromino::set_initial_position(){
+void BlockI::set_initial_position(){
     move(-1,3);
 }
