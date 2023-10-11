@@ -2,35 +2,38 @@
 #include <iostream>
 #include "raylib.h"
 
-Board::Board(){
+Board::Board(int row,int col):num_rows{row},num_cols{col}{
+
+  std::cout<<"constructed grid"<<std::endl;
 
   //set values
-  num_rows=20;
-  num_cols=10;
   cell_size=30;
   colors=color_vector();
 
   //allocate space for grid
   create_grid();
-
   //initialize grid with zeros
   clear_grid();
 
 }
 
-Board::~Board() {
-  for (int i = 0; i < num_rows; ++i) {
-    delete[] grid[i];
-  }
-  delete[] grid;
-}
 
-void Board::create_grid() {
-  this->grid = new int*[num_rows];
-  for (int i = 0; i < num_rows; i++) {
-    grid[i] = new int[num_cols];
-  }
-}
+ Board::~Board() {
+   std::cout<<"destroyed grid"<<std::endl;
+   for (int i = 0; i < num_rows; ++i) {
+     delete[] grid[i];
+   }
+   delete[] grid;
+ }
+
+
+ void Board::create_grid() {
+   grid = new int*[num_rows];
+   for (int i = 0; i < num_rows; i++) {
+     grid[i] = new int[num_cols];
+   }
+ }
+
 
 void Board::clear_grid() {
   for (int i = 0; i < num_rows; i++) {
@@ -40,6 +43,7 @@ void Board::clear_grid() {
   }
 }
 
+
 void Board::show_state() {
   for(int r=0;r<num_rows;r++){
     for(int c=0;c<num_cols;c++){
@@ -48,6 +52,7 @@ void Board::show_state() {
     std::cout<<std::endl;
   }
 }
+
 
 bool Board::is_row_full(int row) {
     for (int j = 0; j < num_cols; ++j) {
@@ -63,6 +68,7 @@ bool Board::is_cell_within_bounds(int row, int col){
   }
   return true;
 }
+
 
 void Board::draw(){
   for(int r=0;r<num_rows;r++){

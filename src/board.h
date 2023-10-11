@@ -4,7 +4,7 @@
 class Board {
 public:
    
-    Board();
+    Board(int row=20,int col=10);
 
     
     ~Board();

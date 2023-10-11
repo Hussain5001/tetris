@@ -60,7 +60,6 @@ void App::run_game() {
   // Initialize the window
   InitWindow(800, 500, "Game Window");
   Game test_game=Game();
-  Board test_board=Board();
   //BlockI test_block=BlockI();
   // Main loop
   while (!WindowShouldClose()) {

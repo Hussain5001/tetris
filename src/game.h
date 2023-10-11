@@ -13,7 +13,8 @@
 class Game{
 public:
     Game();
-    Board game_grid;
+    Board game_grid=Board();
+    
     Tetromino random_block();
     void display();
 private:
