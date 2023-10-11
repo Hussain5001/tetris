@@ -28,7 +28,7 @@ void Tetromino::move(int row, int col){
     //Updating the row offset and the column offset
     row_pos=row_pos+row;
     col_pos=col_pos+col;
-}
+};
 
 //Virtual Function for defining the initial position of a Tetromino block
 std::vector<Position> Tetromino::set_initial_position(){
@@ -41,7 +41,29 @@ std::vector<Position> Tetromino::set_initial_position(){
     }
 
     return movedTiles;
+};
 
-}
+//Function for rotating a Tetromino block
+void Tetromino::rotate(){
+
+    current_rotation=current_rotation+1;
+    if(current_rotation==(int)cells.size()){
+        current_rotation=0;
+    }
+};
+
+//Function for reversing the rotation of tetromino block during bound checking
+void Tetromino::undo_rotation(){
+
+    current_rotation=current_rotation-1;
+
+    if (current_rotation==-1){
+        current_rotation = (int)cells.size() - 1;
+    }
+
+};
+
+
+
 
 

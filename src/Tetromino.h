@@ -23,6 +23,8 @@ class Tetromino{
     std::map<int, std::vector<Position>> cells;
     void draw();
     void move(int row, int col);
+    void rotate();
+    void undo_rotation();
     virtual vector<Position> set_initial_position();
 };
 
