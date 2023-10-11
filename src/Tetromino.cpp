@@ -12,10 +12,9 @@ Tetromino::Tetromino(){
 };
 
 void Tetromino::draw() {
-//Storing the rotation of a tetromino in a vector
-    std::vector<Position> tiles = cells[current_rotation];
+//Storing the intital rotation state of a tetromino in a vector
+    std::vector<Position> tiles = set_initial_position();
 
-//For loop to iterate through each element of the vector tiles
     for (Position current_block: tiles) {
 
         DrawRectangle(current_block.column * cell_size + 1, current_block.row * cell_size + 1, cell_size - 1,
@@ -29,6 +28,20 @@ void Tetromino::move(int row, int col){
     //Updating the row offset and the column offset
     row_pos=row_pos+row;
     col_pos=col_pos+col;
+}
+
+//Virtual Function for defining the initial position of a tetromino block
+std::vector<Position> Tetromino::set_initial_position(){
+
+    std::vector<Position>tiles= cells[current_rotation];
+    std::vector<Position> movedTiles;
+    for (Position item:tiles){
+        Position new_pos= Position(item.row + 0, item.column + 3);
+        movedTiles.push_back(new_pos);
+    }
+
+    return movedTiles;
+
 }
 
 
