@@ -3,7 +3,7 @@
 #include "Color.h"
 #include "board.h"
 #include "Tetromino.h"
-#include "Block_S.h"
+#include "Block_I.h"
 
 
 int main(){
@@ -11,7 +11,7 @@ int main(){
     InitWindow(500,650,"TEST");
     Board test_grid=Board();
     test_grid.show_state();
-    BlockS test_block=BlockS();
+    BlockI test_block=BlockI();
 
     while(WindowShouldClose()==false){
         BeginDrawing();

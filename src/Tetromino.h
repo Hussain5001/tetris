@@ -17,8 +17,8 @@ class Tetromino{
     int col_pos;
 
     public:
-    int id;
     Tetromino();
+    int id;
     std::map<int, std::vector<Position>> cells;
     std::vector<Position> get_current_position();
     void draw();

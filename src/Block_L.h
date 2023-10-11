@@ -5,7 +5,6 @@ class BlockL: public Tetromino{
 
     public:
     BlockL();
-    int id;
 };
 
 

@@ -5,5 +5,4 @@ class BlockJ: public Tetromino{
 
 public:
     BlockJ();
-    int id;
 };
