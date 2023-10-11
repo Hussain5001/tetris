@@ -30,7 +30,7 @@ void Tetromino::move(int row, int col){
     col_pos=col_pos+col;
 }
 
-//Virtual Function for defining the initial position of a tetromino block
+//Virtual Function for defining the initial position of a Tetromino block
 std::vector<Position> Tetromino::set_initial_position(){
 
     std::vector<Position>tiles= cells[current_rotation];

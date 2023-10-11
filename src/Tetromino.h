@@ -17,8 +17,6 @@ class Tetromino{
     int row_pos;
     int col_pos;
 
-
-
     public:
     int id;
     Tetromino();
