@@ -26,7 +26,7 @@ Board::~Board() {
 }
 
 void Board::create_grid() {
-  grid = new int*[num_rows];
+  this->grid = new int*[num_rows];
   for (int i = 0; i < num_rows; i++) {
     grid[i] = new int[num_cols];
   }

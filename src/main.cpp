@@ -10,7 +10,7 @@
 int main(){
 
 	App tetris;
-	tetris.run_menu();
+	//tetris.run_menu();
 	tetris.run_game();
 
 
