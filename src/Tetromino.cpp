@@ -24,12 +24,10 @@ std::vector<Position> Tetromino::get_current_position() {
 
 void Tetromino::draw() {
   // getting the position of block in grid
-  std::vector<Position> cell_positions = get_current_position();
+  std::vector<Position> cell_positions = cells[0];
 
   for (Position cell : cell_positions) {
-    DrawRectangle(cell.column * cell_size + 1,
-                  cell.row * cell_size + 1, cell_size - 1,
-                  cell_size - 1, colors[id]);
+    DrawRectangle(cell.column * cell_size + 1,cell.row * cell_size + 1, cell_size - 1,cell_size - 1, colors[id]);
   };
 };
 

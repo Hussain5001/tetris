@@ -67,7 +67,7 @@ bool Board::is_cell_within_bounds(int row, int col){
 void Board::draw(){
   for(int r=0;r<num_rows;r++){
     for(int c=0;c<num_cols;c++){
-      DrawRectangle(c*cell_size+10,r*cell_size+10,cell_size-1,cell_size-1,colors[grid[r][c]]);
+      DrawRectangle(c*cell_size+1,r*cell_size+1,cell_size-1,cell_size-1,colors[grid[r][c]]);
     }
   }
 }
