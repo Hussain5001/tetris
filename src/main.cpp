@@ -2,8 +2,7 @@
 #include "raylib.h"
 #include "Color.h"
 #include "board.h"
-#include "Tetromino.h"
-#include "Block_I.h"
+
 #include "App.h"
 
 

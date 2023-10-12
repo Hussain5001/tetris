@@ -1,22 +1,133 @@
 #include "game.h"
+
+#include <time.h>
+
+#include <iostream>
 #include <random>
-#include<iostream>
 
 Game::Game() {
-    //game_grid= Board();
-    
-    game_grid.show_state();
-    block_list={BlockI(),BlockJ(),BlockL(),BlockO(),BlockO(),BlockT(),BlockZ()};
+  start_time = 0;
+  drop_interval=0.48;
+  score=0;
+  game_grid.show_state();
+  block_list = {BlockI(), BlockJ(), BlockL(), BlockO(),
+                BlockO(), BlockT(), BlockZ()};
+  current_block = random_block();
+  game_over=false;
+}
+
+Tetromino Game::random_block() {
+    if (block_list.empty()){
+        block_list=get_blocks();
+    }
+  int num = rand() % block_list.size();
+  Tetromino blk =block_list[num];
+  block_list.erase(block_list.begin()+num);
+  return (blk);
+}
+
+std::vector<Tetromino> Game::get_blocks(){
+    return {BlockI(), BlockJ(), BlockL(), BlockO(),
+                BlockO(), BlockT(), BlockZ()};
+}
+
+void Game::display() {
+  game_grid.draw();
+  current_block.draw();
+}
+
+void Game::handle_input() {
+  int key = GetKeyPressed();
+  switch (key) {
+    case KEY_LEFT:
+      move_left();
+      break;
+    case KEY_RIGHT:
+      move_right();
+      break;
+    case KEY_DOWN:
+      move_down();
+      break;
+    case KEY_UP:
+      rotate_and_bound_chk();
+      break;
+  }
+}
+
+void Game::move_left() {
+  if(!game_over){
+    current_block.move(0, -1);
+    if (!is_within_grid()||is_collision()) {
+      current_block.move(0, 1);
+    }
+  }
+}
+
+void Game::move_right() {
+  if(!game_over){
+    current_block.move(0, 1);
+  if (!is_within_grid()||is_collision()) {
+    current_block.move(0, -1);
+    }
+  }
+}
+
+void Game::move_down() {
+  if(!game_over){
+    current_block.move(1, 0);
+    if (!is_within_grid()|| is_collision()) {
+      current_block.move(-1, 0);
+      block_attach();
+    }
+  }
+}
+
+bool Game::is_within_grid() {
+  std::vector<Position> block_structure = current_block.get_current_position();
+  for (Position cell : block_structure) {
+    if (game_grid.is_cell_within_bounds(cell.row, cell.column)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+void Game::rotate_and_bound_chk() {
+  if(!game_over){
+    current_block.rotate();
+    if (!is_within_grid()||is_collision()) {
+      current_block.current_rotation -= 1;
+      if (current_block.current_rotation == -1) {
+        current_block.current_rotation = (int)current_block.cells.size() - 1;
+      }
+    }
+  }
+}
+
+void Game::fall_block() {
+    double current_t=GetTime();
+    if(current_t-start_time>=drop_interval){
+        move_down();
+        start_time=current_t;
+    }
+}
+
+void Game::block_attach(){
+    std::vector<Position> block_structure = current_block.get_current_position();
+    for(Position cell:block_structure){
+        game_grid.grid[cell.row][cell.column]=current_block.id;
+    }
     current_block=random_block();
-
+    game_grid.row_clearance();
 }
 
-Tetromino Game::random_block(){
-    int num = rand() % block_list.size();
-    return (block_list[num]);
-}
+bool Game::is_collision(){
+    std::vector<Position> block_structure=current_block.get_current_position();
+    for(Position cell:block_structure){
 
-void Game::display(){
-    game_grid.draw();
-    current_block.draw();
+        if(!game_grid.is_cell_empty(cell.row,cell.column)){
+            return true;
+        }
+    }
+    return false;
 }

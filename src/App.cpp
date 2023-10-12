@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include "game.h"
+#include "zen_mode.h"
 
 // void App::run_menu() {
 //   InitWindow(800, 450, "Main Menu");
@@ -58,11 +59,12 @@
 
 void App::run_game() {
   // Initialize the window
-  InitWindow(800, 500, "Game Window");
-  Game test_game=Game();
-  //BlockI test_block=BlockI();
+  InitWindow(500, 1000, "Game Window");
+  ZenMode test_game=ZenMode();
   // Main loop
   while (!WindowShouldClose()) {
+    test_game.handle_input();
+    test_game.fall_block();
     BeginDrawing();
     ClearBackground(BLACK);
   

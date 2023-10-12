@@ -1,11 +1,10 @@
 #include"Tetromino.h"
-#include"Position.h"
 #include<raylib.h>
 #include <iostream>
 
 //Default constructor for initializing all the attributes
 Tetromino::Tetromino(){
-    this->cell_size=30;
+    this->cell_size=50;
     this->current_rotation=0;
     colors = color_vector();
     this ->row_pos=0;
@@ -50,15 +49,4 @@ void Tetromino::rotate(){
     if(current_rotation==(int)cells.size()){
         current_rotation=0;
     }
-};
-
-//Function for reversing the rotation of tetromino block during bound checking
-void Tetromino::undo_rotation(){
-
-    current_rotation=current_rotation-1;
-
-    if (current_rotation==-1){
-        current_rotation = (int)cells.size() - 1;
-    }
-
 };

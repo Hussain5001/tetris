@@ -15,6 +15,7 @@ public:
     //void fill_cell(int row, int col, int value);
     //void clear_cell(int row, int col);
     bool is_cell_empty(int row, int col);
+    int row_clearance();
     int get_cell_value(int row, int col);
     bool is_row_full(int row);
     //bool clear_rows(int tol);
