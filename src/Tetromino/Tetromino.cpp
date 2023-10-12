@@ -4,7 +4,7 @@
 
 //Default constructor for initializing all the attributes
 Tetromino::Tetromino(){
-    this->cell_size=50;
+    this->cell_size=40;
     this->current_rotation=0;
     colors = color_vector();
     this ->row_pos=0;
@@ -26,7 +26,7 @@ void Tetromino::draw() {
   // getting the position of block in grid
   std::vector<Position> cell_positions = get_current_position();
   for (Position cell : cell_positions) {
-    DrawRectangle(cell.column * cell_size + 1,cell.row * cell_size + 1, cell_size - 1,cell_size - 1, colors[this->id]);
+    DrawRectangle(cell.column * cell_size + 1,cell.row * cell_size + 1, cell_size - 1,cell_size - 1, colors[this->color_id]);
   };
 };
 

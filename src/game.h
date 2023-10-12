@@ -9,6 +9,7 @@
 #include "Tetromino/Block_T.h"
 #include "Tetromino/Block_Z.h"
 #include "Position.h"
+#include "Color.h"
 #include <vector>
 
 class Game{

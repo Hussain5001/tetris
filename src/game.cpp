@@ -20,9 +20,14 @@ Tetromino Game::random_block() {
     if (block_list.empty()){
         block_list=get_blocks();
     }
-  int num = rand() % block_list.size();
-  Tetromino blk =block_list[num];
-  block_list.erase(block_list.begin()+num);
+  std::vector<Color> color_list = color_vector();
+  
+  int block_index = rand() % block_list.size();
+  Tetromino blk =block_list[block_index];
+  block_list.erase(block_list.begin()+block_index);
+
+  int color_index= 1+rand()%(color_list.size()-1);
+  blk.color_id=color_index;
   return (blk);
 }
 
@@ -115,7 +120,7 @@ void Game::fall_block() {
 void Game::block_attach(){
     std::vector<Position> block_structure = current_block.get_current_position();
     for(Position cell:block_structure){
-        game_grid.grid[cell.row][cell.column]=current_block.id;
+        game_grid.grid[cell.row][cell.column]=current_block.color_id;
     }
     current_block=random_block();
     game_grid.row_clearance();

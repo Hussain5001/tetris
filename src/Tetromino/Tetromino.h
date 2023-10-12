@@ -17,7 +17,7 @@ class Tetromino{
 
     public:
     Tetromino();
-    int id;
+    int color_id;
     int current_rotation;
     std::map<int, std::vector<Position>> cells;
     std::vector<Position> get_current_position();

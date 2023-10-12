@@ -19,7 +19,7 @@ bool ZenMode::is_game_finished() {
 void ZenMode::block_attach(){
     std::vector<Position> block_structure = current_block.get_current_position();
     for(Position cell:block_structure){
-        game_grid.grid[cell.row][cell.column]=current_block.id;
+        game_grid.grid[cell.row][cell.column]=current_block.color_id;
     }
     current_block=random_block();
     game_over=is_game_finished();

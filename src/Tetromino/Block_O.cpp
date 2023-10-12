@@ -4,7 +4,7 @@
 
 BlockO::BlockO(){
 
-    this->id = 4;
+ 
     cells[0] = {Position{0, 0}, Position{0, 1}, Position{1, 0}, Position{1, 1}};
     set_initial_position();
 

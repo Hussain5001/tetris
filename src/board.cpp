@@ -7,7 +7,7 @@ Board::Board(int row,int col):num_rows{row},num_cols{col}{
   std::cout<<"constructed grid"<<std::endl;
 
   //set values
-  cell_size=50;
+  cell_size=40;
   colors=color_vector();
 
   //allocate space for grid
@@ -19,6 +19,7 @@ Board::Board(int row,int col):num_rows{row},num_cols{col}{
 
 
  Board::~Board() {
+   show_state();
    std::cout<<"destroyed grid"<<std::endl;
    for (int i = 0; i < num_rows; ++i) {
      delete[] grid[i];
