@@ -147,7 +147,7 @@ void App::run_game() {
     TimeAttackMode attack_game = TimeAttackMode();
     attack_game.game_start();
     while (!WindowShouldClose()) {
-      if (attack_game.is_game_finished()) {
+      if (attack_game.is_game_finished()&& !attack_game.game_over) {
         attack_game.game_over = true;
         attack_game.game_end();
       }
@@ -180,9 +180,9 @@ void App::run_game() {
     FirstFortyMode forty_game = FirstFortyMode();
     forty_game.game_start();
     while (!WindowShouldClose()) {
-      if (forty_game.is_game_finished()) {
+      if (forty_game.is_game_finished() && !forty_game.game_over) {
         forty_game.game_over = true;
-        forty_game.timer_on = false;
+        forty_game.game_end();
       }
       DrawTextEx(font, "Lines", {365, 15}, 38, 2, WHITE);
       DrawTextEx(font, "Time", {365, 175}, 38, 2, WHITE);

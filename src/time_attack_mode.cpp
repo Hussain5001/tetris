@@ -4,7 +4,7 @@
 TimeAttackMode::TimeAttackMode():TimeDependentMode() {}
 
 bool TimeAttackMode::is_game_finished() {
-  if (elapsed_seconds() >= 10) {
+  if (elapsed_seconds() >= 120) {
     std::cout<<"Game Over"<<std::endl;
     return true;
   } else {
