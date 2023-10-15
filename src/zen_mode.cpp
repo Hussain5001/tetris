@@ -34,7 +34,7 @@ void ZenMode::block_attach() {
 }
 
 double ZenMode::get_score() {
-    if (lines_cleared >= 4) {
+    if (lines_cleared >= 40) {
         return 500 * lines_cleared;
     } else {
         return 300 * lines_cleared;
