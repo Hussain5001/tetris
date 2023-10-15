@@ -4,7 +4,7 @@
 FirstFortyMode::FirstFortyMode():TimeDependentMode(){}
 
 bool FirstFortyMode::is_game_finished() {
-    if(total_lines_cleared>=1){
+    if(total_lines_cleared>=40){
         return true;
     }else{
         return false;
