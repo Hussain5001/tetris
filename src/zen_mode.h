@@ -6,7 +6,7 @@ public:
     ZenMode();
     int total_lines_cleared;
     int lines_cleared;
-    double score_multiplyer;
+    double score_multiplier;
     int lines_counter;
     bool is_game_finished();
     void block_attach();
