@@ -53,7 +53,9 @@ void ZenMode::fall_block() {
     double current_t = GetTime();
     if (current_t - fall_start >= drop_interval) {
         move_down();
-        score += score_multiplier;
+        if(!game_over){
+            score += score_multiplier;
+        }
         fall_start = current_t;
     }
 }
