@@ -65,10 +65,10 @@ void App::run_game() {
   InitWindow(500, 800, "Game Window");
   if(mode==1){
     ZenMode zen_game=ZenMode();
-    while(!WindowShouldClose){
+    while(!WindowShouldClose()){
       zen_game.handle_input();
-      zen_game.fall_block();
       BeginDrawing();
+      zen_game.fall_block();
       ClearBackground(BLACK);
       zen_game.display();
       EndDrawing();
@@ -76,7 +76,7 @@ void App::run_game() {
   }else if(mode==2){
     TimeAttackMode attack_game=TimeAttackMode();
     attack_game.game_start();
-    while(!WindowShouldClose){
+    while(!WindowShouldClose()){
       if(attack_game.is_game_finished()){
         attack_game.game_over=true;
         attack_game.timer_on=false;
@@ -92,7 +92,7 @@ void App::run_game() {
   }else if(mode==3){
     FirstFortyMode forty_game=FirstFortyMode();
     forty_game.game_start();
-    while(!WindowShouldClose){
+    while(!WindowShouldClose()){
       if(forty_game.is_game_finished()){
         forty_game.game_over=true;
         forty_game.timer_on=false;
@@ -105,9 +105,8 @@ void App::run_game() {
       forty_game.display();
       EndDrawing();
   }
-
-  // Close the window
-  CloseWindow();
 }
+// Close the window
+  CloseWindow();
 }
 
