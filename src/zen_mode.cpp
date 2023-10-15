@@ -1,11 +1,11 @@
 #include "zen_mode.h"
 #include <iostream>
 #include <fstream>
-<<<<<<< HEAD
-#include "../vendor/json-develop/single_include/nlohmann/json.hpp"
-=======
+
 #include "../vendor/json/single_include/nlohmann/json.hpp"
->>>>>>> be3a519b9acb5cd3516b9874fb6aedbc8fa1a743
+
+
+
 
 using json = nlohmann::json;
 
