@@ -35,6 +35,7 @@ public:
     double drop_interval;
     double score;
     bool game_over;
+    int lines_cleared;
     virtual bool is_game_finished()=0; 
     virtual double get_score()=0;
 

@@ -6,6 +6,7 @@
 #include <random>
 
 Game::Game() {
+  lines_cleared=0;
   fall_start = 0;
   drop_interval=0.48;
   score=0;

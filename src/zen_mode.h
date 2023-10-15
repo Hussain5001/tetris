@@ -5,7 +5,6 @@ class ZenMode: public Game{
     public:
     ZenMode();
     int total_lines_cleared;
-    int lines_cleared;
     double score_multiplyer;
     int lines_counter;
     bool is_game_finished();
