@@ -1,5 +1,9 @@
 #include "zen_mode.h"
 #include <iostream>
+#include <fstream>
+#include "../vendor/json-develop/single_include/nlohmann/json.hpp"
+
+using json = nlohmann::json;
 
 ZenMode::ZenMode():Game() {
     total_lines_cleared=0;
@@ -54,4 +58,49 @@ void ZenMode::fall_block() {
         score+=score_multiplyer;
         fall_start=current_t;
     }
+}
+
+void ZenMode::save_game_state(const std::string &filename) {
+    json game_state;
+    json grid_array;
+
+    // Convert the 2D grid into a JSON array
+    for (int i = 0; i < 20; i++) {
+        json row;
+        for (int j = 0; j < 10; j++) {
+            row.push_back(game_grid.grid[i][j]);
+        }
+        grid_array.push_back(row);
+    }
+
+    game_state["game_grid"] = grid_array;
+    game_state["score"] = score;
+    game_state["total_lines_cleared"] = total_lines_cleared;
+
+    std::ofstream file(filename);
+    file << game_state.dump(4);
+    file.close();
+}
+
+void ZenMode::load_game_state(const std::string &filename) {
+    std::ifstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Unable to open file: " << filename << std::endl;
+        return;
+    }
+
+    json game_state;
+    file >> game_state;
+    file.close();
+
+   
+    json grid_array = game_state["game_grid"];
+    for (int i = 0; i < 20; i++) {
+        for (int j = 0; j < 10; j++) {
+            game_grid.grid[i][j] = grid_array[i][j];
+        }
+    }
+
+    score = game_state["score"];
+    total_lines_cleared = game_state["total_lines_cleared"];
 }
