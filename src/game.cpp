@@ -57,6 +57,19 @@ void Game::handle_input() {
     case KEY_UP:
       rotate_and_bound_chk();
       break;
+    case KEY_SPACE:
+      if(!game_over){
+        score+=20;
+        while(true){
+          current_block.move(1, 0);
+          if (!is_within_grid()|| is_collision()) {
+            current_block.move(-1, 0);
+            block_attach();
+            break;
+          }
+        }
+      }
+      
   }
 }
 
