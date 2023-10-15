@@ -4,7 +4,7 @@
 
 //Default constructor for initializing all the attributes
 Tetromino::Tetromino(){
-    cell_size=40;
+    cell_size=30;
     current_rotation=0;
     colors = color_vector();
     row_pos=0;
