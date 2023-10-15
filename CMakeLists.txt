@@ -7,8 +7,10 @@ project(Tetris)
 file(GLOB_RECURSE SRCS src/*.cpp)
 
 add_subdirectory(vendor/raylib)
-
+add_subdirectory(vendor/json)
 include_directories(
+    vendor/json
+    vendor/json/single_include
     vendor/raylib
     vendor/raylib/src
     vendor
