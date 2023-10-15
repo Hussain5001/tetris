@@ -156,7 +156,7 @@ void App::run_game() {
       DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
       DrawRectangleRounded({320, 215, 170, 60}, 0.3, 6, RED);
       char time_text[10];
-      sprintf(time_text, "%.2f", attack_game.elapsed_seconds());
+      sprintf(time_text, "%.1f", attack_game.elapsed_seconds());
         Vector2 textSize = MeasureTextEx(font, time_text, 38, 2);
         DrawTextEx(font, time_text, {320 + (170 - textSize.x) / 2, 65}, 38, 2,
                    WHITE);
@@ -194,7 +194,7 @@ void App::run_game() {
         DrawTextEx(font, line_text, {320 + (170 - textSize.x) / 2, 65}, 38, 2,
                    WHITE);
         char time_text[10];
-        sprintf(time_text, "%.2f", forty_game.score);
+        sprintf(time_text, "%.1f", forty_game.score);
         
         Vector2 textSize1 = MeasureTextEx(font, time_text, 38, 2);
         DrawTextEx(font, time_text, {320 + (170 - textSize1.x) / 2, 225}, 38, 2,
