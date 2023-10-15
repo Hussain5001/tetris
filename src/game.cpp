@@ -118,14 +118,6 @@ void Game::fall_block() {
     }
 }
 
-void Game::block_attach(){
-    std::vector<Position> block_structure = current_block.get_current_position();
-    for(Position cell:block_structure){
-        game_grid.grid[cell.row][cell.column]=current_block.color_id;
-    }
-    current_block=random_block();
-    game_grid.row_clearance();
-}
 
 bool Game::is_collision(){
     std::vector<Position> block_structure=current_block.get_current_position();

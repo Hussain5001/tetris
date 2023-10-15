@@ -29,13 +29,13 @@ public:
     void move_down();
     void rotate_and_bound_chk();
     virtual void fall_block();
-    virtual void block_attach();
     bool is_collision();
     double fall_start;
     double drop_interval;
     double score;
     bool game_over;
     int lines_cleared;
+    virtual void block_attach()=0;
     virtual bool is_game_finished()=0; 
     virtual double get_score()=0;
 

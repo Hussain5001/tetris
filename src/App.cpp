@@ -6,6 +6,7 @@
 #include "zen_mode.h"
 #include "time_dependent_mode.h"
 #include "time_attack_mode.h"
+#include "first_forty_mode.h"
 
 // void App::run_menu() {
 //   InitWindow(800, 450, "Main Menu");
@@ -62,7 +63,7 @@
 void App::run_game() {
   // Initialize the window
   InitWindow(500, 800, "Game Window");
-  TimeAttackMode test_game=TimeAttackMode();
+  FirstFortyMode test_game=FirstFortyMode();
   // Main loop
   //TimeDependentMode trial;
   test_game.game_start();
@@ -74,6 +75,8 @@ void App::run_game() {
       test_game.game_over=true;
       test_game.timer_on=false;
     }
+    test_game.score=test_game.get_score();
+    std::cout<<"time: "<<test_game.score<<std::endl;
     test_game.handle_input();
     test_game.fall_block();
     BeginDrawing();
