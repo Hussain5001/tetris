@@ -21,7 +21,10 @@ void FirstFortyMode::block_attach() {
     game_grid.grid[cell.row][cell.column] = current_block.color_id;
   }
   current_block = random_block();
-  if(is_collision()){game_over=true;}
+  if(is_collision()){
+    game_over=true;
+    game_end();
+  }
   lines_cleared = game_grid.row_clearance();
   total_lines_cleared += lines_cleared;
   lines_cleared = 0;

@@ -149,7 +149,7 @@ void App::run_game() {
     while (!WindowShouldClose()) {
       if (attack_game.is_game_finished()) {
         attack_game.game_over = true;
-        attack_game.timer_on = false;
+        attack_game.game_end();
       }
       DrawTextEx(font, "Time", {365, 15}, 38, 2, WHITE);
       DrawTextEx(font, "Score", {365, 175}, 38, 2, WHITE);
