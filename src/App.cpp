@@ -59,7 +59,7 @@
 
 void App::run_game() {
   // Initialize the window
-  InitWindow(500, 1000, "Game Window");
+  InitWindow(500, 800, "Game Window");
   ZenMode test_game=ZenMode();
   // Main loop
   while (!WindowShouldClose()) {
