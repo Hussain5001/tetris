@@ -5,11 +5,11 @@
 
 using json = nlohmann::json;
 
-ZenMode::ZenMode() : Game() {
-    total_lines_cleared = 0;
-    lines_cleared = 0;
-    lines_counter = 0;
-    score_multiplier = 1;
+ZenMode::ZenMode():Game() {
+    total_lines_cleared=0;
+    lines_cleared=0;
+    lines_counter=0;
+    score_multiplier=1;
 }
 
 bool ZenMode::is_game_finished() {
