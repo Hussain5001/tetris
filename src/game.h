@@ -31,7 +31,7 @@ public:
     virtual void fall_block();
     virtual void block_attach();
     bool is_collision();
-    double start_time;
+    double fall_start;
     double drop_interval;
     double score;
     bool game_over;

@@ -6,7 +6,7 @@
 #include <random>
 
 Game::Game() {
-  start_time = 0;
+  fall_start = 0;
   drop_interval=0.48;
   score=0;
   game_grid.show_state();
@@ -111,9 +111,9 @@ void Game::rotate_and_bound_chk() {
 
 void Game::fall_block() {
     double current_t=GetTime();
-    if(current_t-start_time>=drop_interval){
+    if(current_t-fall_start>=drop_interval){
         move_down();
-        start_time=current_t;
+        fall_start=current_t;
     }
 }
 
