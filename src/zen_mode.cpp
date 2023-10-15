@@ -46,7 +46,7 @@ void ZenMode::fall_block() {
         lines_counter = total_lines_cleared;
         score_multiplier += 0.5;
         if (drop_interval > 0.09) {
-            drop_interval -= 0.1;
+            drop_interval -= 0.08;
         }
         std::cout << "speed increased" << std::endl;
     }
