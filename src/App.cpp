@@ -11,14 +11,14 @@
 #include "zen_mode.h"
 
 void App::run_menu() {
-// Opening Menu Window
+  // Opening Menu Window
   InitWindow(500, 600, "Main Menu");
 
   // Button positions and sizes
   Rectangle zenButton = {50, 50, 200, 50};
   Rectangle timeAttackButton = {50, 120, 200, 50};
   Rectangle first40LinesButton = {50, 190, 200, 50};
-// Default mode
+  // Default mode
   mode = 0;
 
   // Main loop
@@ -67,24 +67,25 @@ void App::run_menu() {
 }
 
 void App::run_game() {
-  
-    // Zen Mode
+  // Zen Mode
   if (mode == 1) {
     InitWindow(500, 600, "Zen");
     // Button positions and sizes
     Rectangle new_game_button = {50, 50, 200, 50};
     Rectangle last_progress_button = {50, 120, 200, 50};
-    int choice = 0;
+    bool choice_made = false;
+    bool load_saved_game = false;
     while (!WindowShouldClose()) {
       // Check if any button is clicked
-      if (choice == 0) {
+      if (!choice_made) {
         if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
           if (CheckCollisionPointRec(GetMousePosition(), new_game_button)) {
-            choice = 1;
+            choice_made = true;
             break;
           } else if (CheckCollisionPointRec(GetMousePosition(),
                                             last_progress_button)) {
-            choice = 2;
+            choice_made = true;
+            load_saved_game = true;
             break;
           }
         }
@@ -92,7 +93,7 @@ void App::run_game() {
       BeginDrawing();
       ClearBackground(BLACK);
 
-      if (choice == 0) {
+      if (!choice_made) {
         // Draw the buttons
         DrawRectangleRec(new_game_button, BLUE);
         DrawRectangleRec(last_progress_button, GREEN);
@@ -109,13 +110,16 @@ void App::run_game() {
 
     // Close the window
     CloseWindow();
-    if (choice == 1) {
+    if (choice_made) {
       InitWindow(500, 600, "Zen Mode");
       ZenMode zen_game = ZenMode();
       Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
       ClearBackground(BLACK);
 
-     
+      if (load_saved_game) {
+        zen_game.load_game_state();
+      }
+
       while (!WindowShouldClose()) {
         DrawTextEx(font, "Score", {365, 15}, 38, 2, WHITE);
         DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
@@ -124,39 +128,41 @@ void App::run_game() {
         Vector2 textSize = MeasureTextEx(font, score_text, 38, 2);
         DrawTextEx(font, score_text, {320 + (170 - textSize.x) / 2, 65}, 38, 2,
                    WHITE);
-        
+
         // Button positions and sizes
-      Rectangle quit = {320, 150, 170, 60};
-      Rectangle quit_save = {320, 250, 170, 60};
-      Rectangle main_menu = {320, 360, 170, 60};
-      DrawRectangleRec(quit, RED);
-      DrawRectangleRec(quit_save, PINK);
-      DrawRectangleRec(main_menu, GREEN);
-      // Draw the button labels
-     DrawTextEx(font, "Quit", {360, 160}, 38, 2, WHITE);
-      DrawTextEx(font, "Quit And Save", {325, 260}, 23, 2, WHITE);
-      DrawTextEx(font, "Main Menu", {330, 370}, 32, 2, WHITE);
-      // Clicking on the buttons
+        Rectangle quit = {320, 150, 170, 60};
+        Rectangle quit_save = {320, 250, 170, 60};
+        Rectangle main_menu = {320, 360, 170, 60};
+        DrawRectangleRec(quit, RED);
+        DrawRectangleRec(quit_save, PINK);
+        DrawRectangleRec(main_menu, GREEN);
+        // Draw the button labels
+        DrawTextEx(font, "Quit", {360, 160}, 38, 2, WHITE);
+        DrawTextEx(font, "Quit And Save", {325, 260}, 23, 2, WHITE);
+        DrawTextEx(font, "Main Menu", {330, 370}, 32, 2, WHITE);
+        // Clicking on the buttons
 
-      if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
-        if (CheckCollisionPointRec(GetMousePosition(), main_menu)) {
-          CloseWindow();
-          run_menu();
+        if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+          if (CheckCollisionPointRec(GetMousePosition(), main_menu)) {
+            zen_game.game_over = true;
+            //zen_game.~ZenMode();
+            CloseWindow();
+            run_menu();
+            break;
 
-        } else if (CheckCollisionPointRec(GetMousePosition(), quit)) {
-          CloseWindow();
-        }else if (CheckCollisionPointRec(GetMousePosition(), quit_save)) {
-          //Enter the load function here.
-          CloseWindow();
+          } else if (CheckCollisionPointRec(GetMousePosition(), quit)) {
+            zen_game.game_over = true;
+            CloseWindow();
+          } else if (CheckCollisionPointRec(GetMousePosition(), quit_save)) {
+            zen_game.save_game_state();
+            CloseWindow();
+          }
         }
-      }
-      if(zen_game.game_over==true){
-        Rectangle over_game = {305, 450, 190, 60};
-        DrawRectangleRec(over_game,  WHITE);
-        DrawTextEx(font, "Game Over", {310, 460}, 38, 2, BLACK);
-
-
-      }
+        if (zen_game.game_over == true) {
+          Rectangle over_game = {305, 450, 190, 60};
+          DrawRectangleRec(over_game, WHITE);
+          DrawTextEx(font, "Game Over", {310, 460}, 38, 2, BLACK);
+        }
 
         zen_game.handle_input();
         BeginDrawing();
@@ -179,14 +185,11 @@ void App::run_game() {
       if (attack_game.is_game_finished() && !attack_game.game_over) {
         attack_game.game_over = true;
         attack_game.game_end();
-        
       }
-      if(attack_game.game_over==true){
+      if (attack_game.game_over == true) {
         Rectangle over_game = {305, 450, 190, 60};
-        DrawRectangleRec(over_game,  WHITE);
+        DrawRectangleRec(over_game, WHITE);
         DrawTextEx(font, "Game Over", {310, 460}, 38, 2, BLACK);
-
-
       }
 
       // Score and Time
@@ -212,7 +215,8 @@ void App::run_game() {
           run_menu();
 
         } else if (CheckCollisionPointRec(GetMousePosition(), quit)) {
-          CloseWindow();
+          attack_game.game_over = true;
+          break;
         }
       }
 
@@ -246,12 +250,10 @@ void App::run_game() {
         forty_game.game_end();
       }
 
-      if(forty_game.game_over==true){
+      if (forty_game.game_over == true) {
         Rectangle over_game = {305, 450, 190, 60};
-        DrawRectangleRec(over_game,  WHITE);
+        DrawRectangleRec(over_game, WHITE);
         DrawTextEx(font, "Game Over", {310, 460}, 38, 2, BLACK);
-
-
       }
       DrawTextEx(font, "Lines", {365, 15}, 38, 2, WHITE);
       DrawTextEx(font, "Time", {365, 130}, 38, 2, WHITE);
@@ -276,7 +278,8 @@ void App::run_game() {
           run_menu();
 
         } else if (CheckCollisionPointRec(GetMousePosition(), quit)) {
-          CloseWindow();
+          forty_game.game_over=true;
+          break;
         }
       }
 

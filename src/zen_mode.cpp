@@ -11,6 +11,10 @@ ZenMode::ZenMode():Game() {
     score_multiplier=1;
 }
 
+ZenMode::~ZenMode() {
+    game_grid.~Board();
+}
+
 bool ZenMode::is_game_finished() {
     if (is_collision()) {
         return true;
@@ -69,7 +73,7 @@ void ZenMode::save_game_state() {
         for (int i = 0; i < 20; i++) {
             json row;
             for (int j = 0; j < 10; j++) {
-                row.push_back(i * 10 + j);;
+                row.push_back(game_grid.grid[i][j]);
             }
             grid_array.push_back(row);
         }
@@ -107,7 +111,7 @@ void ZenMode::load_game_state() {
                 if (grid_array[i].is_array()) {
                     for (int j = 0; j < 10; j++) {
                         if (grid_array[i][j].is_number()) {
-                            std::cout << grid_array[i][j] << " ";
+                            game_grid.grid[i][j]=grid_array[i][j];
                         }
                     }
                     std::cout << std::endl;

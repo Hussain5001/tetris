@@ -22,6 +22,7 @@ Game::Game() {
   game_over=false;
 }
 
+
 // Function to generate a random Tetromino block
 Tetromino Game::random_block() {
     if (block_list.empty()){

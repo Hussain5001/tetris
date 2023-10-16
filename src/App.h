@@ -12,5 +12,4 @@ public:
 
     void run_menu();
     void run_game();
-    bool is_game_quit();
 };

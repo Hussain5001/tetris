@@ -67,12 +67,12 @@ public:
     // Function to get the current score
     virtual double get_score() = 0;
 
+    // Current Tetromino block
+    Tetromino current_block;
+
    protected:
     // List of Tetromino blocks
     std::vector<Tetromino> block_list;
-
-    // Current Tetromino block
-    Tetromino current_block;
 
     // Function to check if the block is within the game grid
     bool is_within_grid();
