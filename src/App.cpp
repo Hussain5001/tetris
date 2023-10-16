@@ -11,13 +11,14 @@
 #include "zen_mode.h"
 
 void App::run_menu() {
+// Opening Menu Window
   InitWindow(500, 600, "Main Menu");
 
   // Button positions and sizes
   Rectangle zenButton = {50, 50, 200, 50};
   Rectangle timeAttackButton = {50, 120, 200, 50};
   Rectangle first40LinesButton = {50, 190, 200, 50};
-
+// Default mode
   mode = 0;
 
   // Main loop
@@ -66,10 +67,11 @@ void App::run_menu() {
 }
 
 void App::run_game() {
-  // Initialize the window
-
+  
+    // Zen Mode
   if (mode == 1) {
     InitWindow(500, 600, "Zen");
+    // Button positions and sizes
     Rectangle new_game_button = {50, 50, 200, 50};
     Rectangle last_progress_button = {50, 120, 200, 50};
     int choice = 0;
@@ -123,7 +125,7 @@ void App::run_game() {
         DrawTextEx(font, score_text, {320 + (170 - textSize.x) / 2, 65}, 38, 2,
                    WHITE);
         
-        // Buttons
+        // Button positions and sizes
       Rectangle quit = {320, 150, 170, 60};
       Rectangle quit_save = {320, 250, 170, 60};
       Rectangle main_menu = {320, 360, 170, 60};
@@ -193,7 +195,7 @@ void App::run_game() {
       DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
       DrawRectangleRounded({320, 170, 170, 60}, 0.3, 6, RED);
 
-      // Buttons
+      // Button positions and sizes
       Rectangle quit = {320, 250, 170, 60};
       Rectangle main_menu = {320, 330, 170, 60};
       DrawRectangleRec(quit, PINK);
