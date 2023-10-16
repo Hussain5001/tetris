@@ -62,20 +62,11 @@ void App::run_menu() {
 
   // Close the window
   CloseWindow();
+  run_game();
 }
-
-
-
-
-
-
-
 
 void App::run_game() {
   // Initialize the window
-
-  
-//   Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
 
   if (mode == 1) {
     InitWindow(500, 620, "Zen");
@@ -117,12 +108,12 @@ void App::run_game() {
     // Close the window
     CloseWindow();
     if (choice == 1) {
-        InitWindow(500, 620, "Zen Mode");
+      InitWindow(500, 620, "Zen Mode");
       ZenMode zen_game = ZenMode();
       Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
       ClearBackground(BLACK);
 
-    //   std::cout << "Score: " << zen_game.score << std::endl;
+      //   std::cout << "Score: " << zen_game.score << std::endl;
       while (!WindowShouldClose()) {
         DrawTextEx(font, "Score", {365, 15}, 38, 2, WHITE);
         DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
@@ -141,31 +132,57 @@ void App::run_game() {
       }
     }
 
-  } else if (mode == 2) {
+  }
+
+  else if (mode == 2) {
     InitWindow(500, 620, "Time Attack");
     Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
     TimeAttackMode attack_game = TimeAttackMode();
     attack_game.game_start();
     while (!WindowShouldClose()) {
-      if (attack_game.is_game_finished()&& !attack_game.game_over) {
+      if (attack_game.is_game_finished() && !attack_game.game_over) {
         attack_game.game_over = true;
         attack_game.game_end();
       }
+
+      // Score and Time
       DrawTextEx(font, "Time", {365, 15}, 38, 2, WHITE);
       DrawTextEx(font, "Score", {365, 175}, 38, 2, WHITE);
       DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
       DrawRectangleRounded({320, 215, 170, 60}, 0.3, 6, RED);
+
+      // Buttons
+      Rectangle quit = {320, 375, 170, 60};
+      Rectangle main_menu = {320, 535, 170, 60};
+      DrawRectangleRec(quit, PINK);
+      DrawRectangleRec(main_menu, GREEN);
+      // Draw the button labels
+
+      DrawTextEx(font, "Quit", {360, 385}, 38, 2, WHITE);
+      DrawTextEx(font, "Main Menu", {330, 545}, 32, 2, WHITE);
+      // Clicking on the buttons
+
+      if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+        if (CheckCollisionPointRec(GetMousePosition(), main_menu)) {
+          CloseWindow();
+          run_menu();
+
+        } else if (CheckCollisionPointRec(GetMousePosition(), quit)) {
+          CloseWindow();
+        }
+      }
+
       char time_text[10];
       sprintf(time_text, "%.1f", attack_game.elapsed_seconds());
-        Vector2 textSize = MeasureTextEx(font, time_text, 38, 2);
-        DrawTextEx(font, time_text, {320 + (170 - textSize.x) / 2, 65}, 38, 2,
-                   WHITE);
-        char score_text[10];
-        sprintf(score_text, "%.2f", attack_game.score);
-        std::cout<<"Score: "<<attack_game.score<<std::endl;
-        Vector2 textSize1 = MeasureTextEx(font, score_text, 38, 2);
-        DrawTextEx(font, score_text, {320 + (170 - textSize1.x) / 2, 225}, 38, 2,
-                   WHITE);
+      Vector2 textSize = MeasureTextEx(font, time_text, 38, 2);
+      DrawTextEx(font, time_text, {320 + (170 - textSize.x) / 2, 65}, 38, 2,
+                 WHITE);
+      char score_text[10];
+      sprintf(score_text, "%.2f", attack_game.score);
+      std::cout << "Score: " << attack_game.score << std::endl;
+      Vector2 textSize1 = MeasureTextEx(font, score_text, 38, 2);
+      DrawTextEx(font, score_text, {320 + (170 - textSize1.x) / 2, 225}, 38, 2,
+                 WHITE);
       attack_game.handle_input();
       attack_game.fall_block();
       BeginDrawing();
@@ -188,17 +205,40 @@ void App::run_game() {
       DrawTextEx(font, "Time", {365, 175}, 38, 2, WHITE);
       DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
       DrawRectangleRounded({320, 215, 170, 60}, 0.3, 6, RED);
+
+      // Buttons
+      Rectangle quit = {320, 375, 170, 60};
+      Rectangle main_menu = {320, 535, 170, 60};
+      DrawRectangleRec(quit, PINK);
+      DrawRectangleRec(main_menu, GREEN);
+      // Draw the button labels
+
+      DrawTextEx(font, "Quit", {360, 385}, 38, 2, WHITE);
+      DrawTextEx(font, "Main Menu", {330, 545}, 32, 2, WHITE);
+
+      // Clicking on the buttons
+
+      if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+        if (CheckCollisionPointRec(GetMousePosition(), main_menu)) {
+          CloseWindow();
+          run_menu();
+
+        } else if (CheckCollisionPointRec(GetMousePosition(), quit)) {
+          CloseWindow();
+        }
+      }
+
       char line_text[10];
       sprintf(line_text, "%d", forty_game.total_lines_cleared);
-        Vector2 textSize = MeasureTextEx(font, line_text, 38, 2);
-        DrawTextEx(font, line_text, {320 + (170 - textSize.x) / 2, 65}, 38, 2,
-                   WHITE);
-        char time_text[10];
-        sprintf(time_text, "%.1f", forty_game.score);
-        
-        Vector2 textSize1 = MeasureTextEx(font, time_text, 38, 2);
-        DrawTextEx(font, time_text, {320 + (170 - textSize1.x) / 2, 225}, 38, 2,
-                   WHITE);
+      Vector2 textSize = MeasureTextEx(font, line_text, 38, 2);
+      DrawTextEx(font, line_text, {320 + (170 - textSize.x) / 2, 65}, 38, 2,
+                 WHITE);
+      char time_text[10];
+      sprintf(time_text, "%.1f", forty_game.score);
+
+      Vector2 textSize1 = MeasureTextEx(font, time_text, 38, 2);
+      DrawTextEx(font, time_text, {320 + (170 - textSize1.x) / 2, 225}, 38, 2,
+                 WHITE);
       forty_game.score = forty_game.get_score();
       forty_game.handle_input();
       forty_game.fall_block();
