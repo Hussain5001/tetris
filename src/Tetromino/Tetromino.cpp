@@ -50,3 +50,15 @@ void Tetromino::rotate(){
         current_rotation=0;
     }
 };
+
+//Function for providing the row offset of a tetromino (For testing)
+int Tetromino::get_row_offset(){
+
+    return row_pos;
+}
+
+//Function for providing the column offset of a tetromino (For testing)
+int Tetromino::get_col_offset(){
+
+    return col_pos;
+}

@@ -25,6 +25,9 @@ class Tetromino{
     void move(int row, int col);
     void rotate();
     virtual void set_initial_position();
+    int get_row_offset();
+    int get_col_offset();
+
 };
 
 

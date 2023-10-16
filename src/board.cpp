@@ -107,3 +107,16 @@ int Board::row_clearance(){
   }
   return full_row;
 }
+
+//Getter function for returning the number of rows
+int Board::get_num_rows(){
+  return num_rows;
+
+}
+
+//Getter function for returning the grid_value
+int Board::get_grid_value(int given_row,int given_column){
+  return grid[given_row][given_column];
+}
+
+

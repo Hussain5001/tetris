@@ -22,6 +22,8 @@ public:
     bool is_cell_within_bounds(int row, int col);
     int** grid;
     void draw();
+    int get_num_rows();
+    int get_grid_value(int given_row,int given_column);
 private:
     
     int num_rows;
