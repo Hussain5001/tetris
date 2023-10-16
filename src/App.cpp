@@ -11,7 +11,7 @@
 #include "zen_mode.h"
 
 void App::run_menu() {
-  InitWindow(500, 620, "Main Menu");
+  InitWindow(500, 600, "Main Menu");
 
   // Button positions and sizes
   Rectangle zenButton = {50, 50, 200, 50};
@@ -69,7 +69,7 @@ void App::run_game() {
   // Initialize the window
 
   if (mode == 1) {
-    InitWindow(500, 620, "Zen");
+    InitWindow(500, 600, "Zen");
     Rectangle new_game_button = {50, 50, 200, 50};
     Rectangle last_progress_button = {50, 120, 200, 50};
     int choice = 0;
@@ -108,12 +108,12 @@ void App::run_game() {
     // Close the window
     CloseWindow();
     if (choice == 1) {
-      InitWindow(500, 620, "Zen Mode");
+      InitWindow(500, 600, "Zen Mode");
       ZenMode zen_game = ZenMode();
       Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
       ClearBackground(BLACK);
 
-      //   std::cout << "Score: " << zen_game.score << std::endl;
+     
       while (!WindowShouldClose()) {
         DrawTextEx(font, "Score", {365, 15}, 38, 2, WHITE);
         DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
@@ -122,6 +122,40 @@ void App::run_game() {
         Vector2 textSize = MeasureTextEx(font, score_text, 38, 2);
         DrawTextEx(font, score_text, {320 + (170 - textSize.x) / 2, 65}, 38, 2,
                    WHITE);
+        
+        // Buttons
+      Rectangle quit = {320, 150, 170, 60};
+      Rectangle quit_save = {320, 250, 170, 60};
+      Rectangle main_menu = {320, 360, 170, 60};
+      DrawRectangleRec(quit, RED);
+      DrawRectangleRec(quit_save, PINK);
+      DrawRectangleRec(main_menu, GREEN);
+      // Draw the button labels
+     DrawTextEx(font, "Quit", {360, 160}, 38, 2, WHITE);
+      DrawTextEx(font, "Quit And Save", {325, 260}, 23, 2, WHITE);
+      DrawTextEx(font, "Main Menu", {330, 370}, 32, 2, WHITE);
+      // Clicking on the buttons
+
+      if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+        if (CheckCollisionPointRec(GetMousePosition(), main_menu)) {
+          CloseWindow();
+          run_menu();
+
+        } else if (CheckCollisionPointRec(GetMousePosition(), quit)) {
+          CloseWindow();
+        }else if (CheckCollisionPointRec(GetMousePosition(), quit_save)) {
+          //Enter the load function here.
+          CloseWindow();
+        }
+      }
+      if(zen_game.game_over==true){
+        Rectangle over_game = {305, 450, 190, 60};
+        DrawRectangleRec(over_game,  WHITE);
+        DrawTextEx(font, "Game Over", {310, 460}, 38, 2, BLACK);
+
+
+      }
+
         zen_game.handle_input();
         BeginDrawing();
         zen_game.fall_block();
@@ -135,7 +169,7 @@ void App::run_game() {
   }
 
   else if (mode == 2) {
-    InitWindow(500, 620, "Time Attack");
+    InitWindow(500, 600, "Time Attack");
     Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
     TimeAttackMode attack_game = TimeAttackMode();
     attack_game.game_start();
@@ -143,23 +177,31 @@ void App::run_game() {
       if (attack_game.is_game_finished() && !attack_game.game_over) {
         attack_game.game_over = true;
         attack_game.game_end();
+        
+      }
+      if(attack_game.game_over==true){
+        Rectangle over_game = {305, 450, 190, 60};
+        DrawRectangleRec(over_game,  WHITE);
+        DrawTextEx(font, "Game Over", {310, 460}, 38, 2, BLACK);
+
+
       }
 
       // Score and Time
       DrawTextEx(font, "Time", {365, 15}, 38, 2, WHITE);
-      DrawTextEx(font, "Score", {365, 175}, 38, 2, WHITE);
+      DrawTextEx(font, "Score", {360, 130}, 38, 2, WHITE);
       DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
-      DrawRectangleRounded({320, 215, 170, 60}, 0.3, 6, RED);
+      DrawRectangleRounded({320, 170, 170, 60}, 0.3, 6, RED);
 
       // Buttons
-      Rectangle quit = {320, 375, 170, 60};
-      Rectangle main_menu = {320, 535, 170, 60};
+      Rectangle quit = {320, 250, 170, 60};
+      Rectangle main_menu = {320, 330, 170, 60};
       DrawRectangleRec(quit, PINK);
       DrawRectangleRec(main_menu, GREEN);
       // Draw the button labels
 
-      DrawTextEx(font, "Quit", {360, 385}, 38, 2, WHITE);
-      DrawTextEx(font, "Main Menu", {330, 545}, 32, 2, WHITE);
+      DrawTextEx(font, "Quit", {360, 260}, 38, 2, WHITE);
+      DrawTextEx(font, "Main Menu", {330, 340}, 32, 2, WHITE);
       // Clicking on the buttons
 
       if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
@@ -179,9 +221,9 @@ void App::run_game() {
                  WHITE);
       char score_text[10];
       sprintf(score_text, "%.2f", attack_game.score);
-      std::cout << "Score: " << attack_game.score << std::endl;
+      ;
       Vector2 textSize1 = MeasureTextEx(font, score_text, 38, 2);
-      DrawTextEx(font, score_text, {320 + (170 - textSize1.x) / 2, 225}, 38, 2,
+      DrawTextEx(font, score_text, {320 + (170 - textSize1.x) / 2, 180}, 38, 2,
                  WHITE);
       attack_game.handle_input();
       attack_game.fall_block();
@@ -192,7 +234,7 @@ void App::run_game() {
     }
 
   } else if (mode == 3) {
-    InitWindow(500, 620, "First 40 Lines");
+    InitWindow(500, 600, "First 40 Lines");
     Font font = LoadFontEx("Font/monogram.ttf", 64, 0, 0);
     FirstFortyMode forty_game = FirstFortyMode();
     forty_game.game_start();
@@ -201,20 +243,28 @@ void App::run_game() {
         forty_game.game_over = true;
         forty_game.game_end();
       }
+
+      if(forty_game.game_over==true){
+        Rectangle over_game = {305, 450, 190, 60};
+        DrawRectangleRec(over_game,  WHITE);
+        DrawTextEx(font, "Game Over", {310, 460}, 38, 2, BLACK);
+
+
+      }
       DrawTextEx(font, "Lines", {365, 15}, 38, 2, WHITE);
-      DrawTextEx(font, "Time", {365, 175}, 38, 2, WHITE);
+      DrawTextEx(font, "Time", {365, 130}, 38, 2, WHITE);
       DrawRectangleRounded({320, 55, 170, 60}, 0.3, 6, BLUE);
-      DrawRectangleRounded({320, 215, 170, 60}, 0.3, 6, RED);
+      DrawRectangleRounded({320, 170, 170, 60}, 0.3, 6, RED);
 
       // Buttons
-      Rectangle quit = {320, 375, 170, 60};
-      Rectangle main_menu = {320, 535, 170, 60};
+      Rectangle quit = {320, 250, 170, 60};
+      Rectangle main_menu = {320, 330, 170, 60};
       DrawRectangleRec(quit, PINK);
       DrawRectangleRec(main_menu, GREEN);
       // Draw the button labels
 
-      DrawTextEx(font, "Quit", {360, 385}, 38, 2, WHITE);
-      DrawTextEx(font, "Main Menu", {330, 545}, 32, 2, WHITE);
+      DrawTextEx(font, "Quit", {360, 260}, 38, 2, WHITE);
+      DrawTextEx(font, "Main Menu", {330, 340}, 32, 2, WHITE);
 
       // Clicking on the buttons
 
@@ -237,7 +287,7 @@ void App::run_game() {
       sprintf(time_text, "%.1f", forty_game.score);
 
       Vector2 textSize1 = MeasureTextEx(font, time_text, 38, 2);
-      DrawTextEx(font, time_text, {320 + (170 - textSize1.x) / 2, 225}, 38, 2,
+      DrawTextEx(font, time_text, {320 + (170 - textSize1.x) / 2, 180}, 38, 2,
                  WHITE);
       forty_game.score = forty_game.get_score();
       forty_game.handle_input();
