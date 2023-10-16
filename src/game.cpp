@@ -6,6 +6,7 @@
 #include <random>
 
 Game::Game() {
+  lines_cleared=0;
   fall_start = 0;
   drop_interval=0.48;
   score=0;
@@ -56,6 +57,19 @@ void Game::handle_input() {
     case KEY_UP:
       rotate_and_bound_chk();
       break;
+    case KEY_SPACE:
+      if(!game_over){
+        score+=20;
+        while(true){
+          current_block.move(1, 0);
+          if (!is_within_grid()|| is_collision()) {
+            current_block.move(-1, 0);
+            block_attach();
+            break;
+          }
+        }
+      }
+      
   }
 }
 
@@ -117,14 +131,6 @@ void Game::fall_block() {
     }
 }
 
-void Game::block_attach(){
-    std::vector<Position> block_structure = current_block.get_current_position();
-    for(Position cell:block_structure){
-        game_grid.grid[cell.row][cell.column]=current_block.color_id;
-    }
-    current_block=random_block();
-    game_grid.row_clearance();
-}
 
 bool Game::is_collision(){
     std::vector<Position> block_structure=current_block.get_current_position();

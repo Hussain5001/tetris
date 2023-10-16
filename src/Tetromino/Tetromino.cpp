@@ -4,11 +4,11 @@
 
 //Default constructor for initializing all the attributes
 Tetromino::Tetromino(){
-    this->cell_size=40;
-    this->current_rotation=0;
+    cell_size=30;
+    current_rotation=0;
     colors = color_vector();
-    this ->row_pos=0;
-    this ->col_pos=0;
+    row_pos=0;
+    col_pos=0;
 };
 
 std::vector<Position> Tetromino::get_current_position() {

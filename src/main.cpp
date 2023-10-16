@@ -1,19 +1,11 @@
-#include <iostream>
-#include "raylib.h"
-#include "Color.h"
-#include "board.h"
-
 #include "App.h"
-#include "UnitTestTetromino.h"
-#include "UnitTestBoard.h"
-#include "UnitTestGame.h"
 
 
 int main(){
 
 	App tetris;
 	//tetris.run_menu();
-	//tetris.run_game();
+	tetris.run_game();
 
 
     // InitWindow(500,650,"TEST");
@@ -31,16 +23,4 @@ int main(){
     //     EndDrawing();
     // }
     // CloseWindow();
-
-    UnitTestTetromino testing1;
-    testing1.run_test_tetromino();
-
-    UnitTestBoard testing2;
-    testing2.run_test_board();
-
-    UnitTestGame testing3;
-    testing3.run_test_game();
-
-
-
 }
