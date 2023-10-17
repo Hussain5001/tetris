@@ -38,6 +38,14 @@ public:
     // Method to draw the board
     void draw();
 
+    //Method to get the grid value
+    int get_grid_value(int given_row,int given_column);
+
+    //Method to get the row value
+    int get_num_rows();
+
+
+
 private:
     // Number of rows in the grid
     int num_rows;
