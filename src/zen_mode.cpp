@@ -11,9 +11,6 @@ ZenMode::ZenMode():Game() {
     score_multiplier=1;
 }
 
-ZenMode::~ZenMode() {
-    game_grid.~Board();
-}
 
 bool ZenMode::is_game_finished() {
     if (is_collision()) {
@@ -38,7 +35,7 @@ void ZenMode::block_attach() {
 }
 
 double ZenMode::get_score() {
-    if (lines_cleared >= 40) {
+    if (lines_cleared >= 4) {
         return 500 * lines_cleared;
     } else {
         return 300 * lines_cleared;

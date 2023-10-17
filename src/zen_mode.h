@@ -4,7 +4,6 @@
 class ZenMode: public Game{
 public:
     ZenMode();
-    ~ZenMode();
     int total_lines_cleared;
     int lines_cleared;
     double score_multiplier;
