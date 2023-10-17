@@ -7,7 +7,7 @@ This is an introduction guide to our game of Tetris. It is a classic puzzle vide
 After you've successfully built the code, a Main Menu opens that gives you three play options: 
 1. **Zen Mode** : This is a non-timed version where user can play for as long as they want until the game finishes. They are also given the option to **Quit**  the game or **Quit and Save** if they'd like to save their progress.
 2. **Time Attack**: This is a 120 seconds timed game wherein the user has to score as much as they can in 120 seconds.
-3. **First Forty Lines Clearance**: In this, the user has to clear 40 lines as fast as they can. along with the score, you get a timer which tells you how long it took you to complete the game. 
+3. **First Forty Lines Clearance**: In this, the user has to clear 40 lines as fast as they can. along with the timer, you get a **Lines** prompter which tells you the number of lines cleared so far. 
 
 In all the modes, the user also gets an option to go back to the **Main Menu** in case the they changes their about the mode they want to play.
 
