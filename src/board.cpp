@@ -2,8 +2,10 @@
 #include <iostream>
 #include "raylib.h"
 
+// constructor
 Board::Board(int row,int col):num_rows{row},num_cols{col}{
 
+// displays when grid is successfully constructed
   std::cout<<"constructed grid"<<std::endl;
 
   //set values
@@ -17,17 +19,20 @@ Board::Board(int row,int col):num_rows{row},num_cols{col}{
 
 }
 
-
+// destructor
  Board::~Board() {
+  // displays state of grid before destroying it
    show_state();
+   // displays message when grid is succesfully destroyed
    std::cout<<"destroyed grid"<<std::endl;
+   // deallocate memory for the grid
    for (int i = 0; i < num_rows; ++i) {
      delete[] grid[i];
    }
    delete[] grid;
  }
 
-
+// creates a grid with the specified number of rows and columns
  void Board::create_grid() {
    grid = new int*[num_rows];
    for (int i = 0; i < num_rows; i++) {
@@ -35,7 +40,7 @@ Board::Board(int row,int col):num_rows{row},num_cols{col}{
    }
  }
 
-
+// clears the grid to all values 0
 void Board::clear_grid() {
   for (int i = 0; i < num_rows; i++) {
     for (int j = 0; j < num_cols; j++) {
@@ -44,7 +49,7 @@ void Board::clear_grid() {
   }
 }
 
-
+// displays the current state of the grid
 void Board::show_state() {
   for(int r=0;r<num_rows;r++){
     for(int c=0;c<num_cols;c++){
@@ -54,7 +59,7 @@ void Board::show_state() {
   }
 }
 
-
+// a function that checks is a row is full
 bool Board::is_row_full(int row) {
     for (int j = 0; j < num_cols; j++) {
         if (grid[row][j] == 0) {
@@ -65,7 +70,7 @@ bool Board::is_row_full(int row) {
 }
 
 
-
+// to check if the cell is within bounds 
 bool Board::is_cell_within_bounds(int row, int col){
   if(row>=0 && col>=0 && row<num_rows && col<num_cols){
     return false;
@@ -73,7 +78,7 @@ bool Board::is_cell_within_bounds(int row, int col){
   return true;
 }
 
-
+// a function to draw the grid
 void Board::draw(){
   for(int r=0;r<num_rows;r++){
     for(int c=0;c<num_cols;c++){
@@ -82,14 +87,16 @@ void Board::draw(){
   }
 }
 
+// to get the value of the specific cell
 int Board::get_cell_value(int row, int col) {
     return grid[row][col];
 }
 
+// to check if the cell is empty
 bool Board::is_cell_empty(int row, int col) {
     return grid[row][col] == 0;
 }
-
+// a function to clear a row and shift the above row down  
 int Board::row_clearance(){
   int full_row=0;
   for(int r=num_rows-1;r>=0;r--){
@@ -107,16 +114,3 @@ int Board::row_clearance(){
   }
   return full_row;
 }
-
-//Getter function for returning the number of rows
-int Board::get_num_rows(){
-  return num_rows;
-
-}
-
-//Getter function for returning the grid_value
-int Board::get_grid_value(int given_row,int given_column){
-  return grid[given_row][given_column];
-}
-
-

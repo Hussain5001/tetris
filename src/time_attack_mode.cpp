@@ -5,7 +5,6 @@ TimeAttackMode::TimeAttackMode():TimeDependentMode() {}
 
 bool TimeAttackMode::is_game_finished() {
   if (elapsed_seconds() >= 120) {
-    std::cout<<"Game Over"<<std::endl;
     return true;
   } else {
     return false;
@@ -21,6 +20,7 @@ void TimeAttackMode::block_attach(){
     if(is_collision()){
         game_over=true;
         game_end();
+        std::cout<<"Game Over"<<std::endl;
     }
     lines_cleared=game_grid.row_clearance();
     score+=get_score();
