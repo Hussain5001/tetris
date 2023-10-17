@@ -6,6 +6,7 @@ FirstFortyMode::FirstFortyMode():TimeDependentMode(){}
 bool FirstFortyMode::is_game_finished() {
     if(total_lines_cleared>=40){
         return true;
+        std::cout<<"Game Over"<<std::endl;
     }else{
         return false;
     }
@@ -24,6 +25,7 @@ void FirstFortyMode::block_attach() {
   if(is_collision()){
     game_over=true;
     game_end();
+    std::cout<<"Game Over"<<std::endl;
   }
   lines_cleared = game_grid.row_clearance();
   total_lines_cleared += lines_cleared;

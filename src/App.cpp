@@ -181,6 +181,7 @@ void App::time_attack_mode() {
     if (attack_game.is_game_finished() && !attack_game.game_over) {
       attack_game.game_over = true;
       attack_game.game_end();
+      std::cout<<"Game Over"<<std::endl;
     }
     if (attack_game.game_over == true) {
       Rectangle over_game = {305, 450, 190, 60};
@@ -246,6 +247,7 @@ void App::forty_line_mode() {
     if (forty_game.is_game_finished() && !forty_game.game_over) {
       forty_game.game_over = true;
       forty_game.game_end();
+      std::cout<<"Game Over"<<std::endl;
     }
 
     if (forty_game.game_over == true) {

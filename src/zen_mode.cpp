@@ -14,6 +14,7 @@ ZenMode::ZenMode():Game() {
 
 bool ZenMode::is_game_finished() {
     if (is_collision()) {
+        std::cout<<"Game Over"<<std::endl;
         return true;
     } else {
         return false;
