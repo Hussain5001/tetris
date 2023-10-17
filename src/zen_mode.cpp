@@ -1,17 +1,18 @@
+// Including necessary headers
 #include "zen_mode.h"
 #include <iostream>
 #include <fstream>
 #include "../vendor/json/single_include/nlohmann/json.hpp"
 
 using json = nlohmann::json;
-
+// Constructor for ZenMode class, inheriting from Game class
 ZenMode::ZenMode():Game() {
     total_lines_cleared=0;
     lines_counter=0;
     score_multiplier=1;
 }
 
-
+// Function to check if the game is finished
 bool ZenMode::is_game_finished() {
     if (is_collision()) {
         std::cout<<"Game Over"<<std::endl;
@@ -20,7 +21,7 @@ bool ZenMode::is_game_finished() {
         return false;
     }
 }
-
+// Function to attach the block to the grid
 void ZenMode::block_attach() {
     std::vector<Position> block_structure = current_block.get_current_position();
     for (Position cell : block_structure) {
@@ -34,7 +35,7 @@ void ZenMode::block_attach() {
     lines_cleared = 0;
     std::cout << "score: " << score << std::endl;
 }
-
+// Function to calculate score based on the number of lines cleared
 double ZenMode::get_score() {
     if (lines_cleared >= 4) {
         return 500 * lines_cleared;
@@ -42,7 +43,7 @@ double ZenMode::get_score() {
         return 300 * lines_cleared;
     }
 }
-
+// Function to make the block fall
 void ZenMode::fall_block() {
     if (total_lines_cleared - lines_counter >= 5) {
         lines_counter = total_lines_cleared;
@@ -61,7 +62,7 @@ void ZenMode::fall_block() {
         fall_start = current_t;
     }
 }
-
+// Function to save the current game state to a JSON file
 void ZenMode::save_game_state() {
     try {
         json game_state;
@@ -90,7 +91,7 @@ void ZenMode::save_game_state() {
         std::cerr << "An error occurred: " << e.what() << std::endl;
     }
 }
-
+ // Loading other game state data from the JSON file
 void ZenMode::load_game_state() {
     try {
         std::ifstream file("game_state.json");
@@ -117,12 +118,10 @@ void ZenMode::load_game_state() {
             }
         }
 
-       
+        // Loading other game state data from the JSON file
         if (game_state.contains("score") && game_state["score"].is_number()) {
             score = game_state["score"];
         }
-
-        
 
         if (game_state.contains("score_multiplier") && game_state["score_multiplier"].is_number_float()) {
             score_multiplier = game_state["score_multiplier"];

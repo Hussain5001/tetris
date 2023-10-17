@@ -1,8 +1,9 @@
 #include "time_attack_mode.h"
 #include <iostream>
 
+// Constructor for TimeAttackMode, inheriting from TimeDependentMode
 TimeAttackMode::TimeAttackMode():TimeDependentMode() {}
-
+// Function to check if the game is finished based on elapsed time
 bool TimeAttackMode::is_game_finished() {
   if (elapsed_seconds() >= 120) {
     return true;
@@ -10,7 +11,7 @@ bool TimeAttackMode::is_game_finished() {
     return false;
   }
 }
-
+// Function to attach the block to the grid
 void TimeAttackMode::block_attach(){
     std::vector<Position> block_structure = current_block.get_current_position();
     for(Position cell:block_structure){
@@ -28,7 +29,7 @@ void TimeAttackMode::block_attach(){
     std::cout<<"score: "<<score<<std::endl;
 
 }
-
+// Function to calculate the score based on the number of lines cleared
 double TimeAttackMode::get_score() { 
     switch (lines_cleared)
     {
